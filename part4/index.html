@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Request</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Reservation Request</h1>
+    </header>
+    <main>
+        <form id="reservation-form">
+            <fieldset>
+                <legend>General Information</legend>
+                <div>
+                    <label for="arrival-date">Arrival Date:</label>
+                    <input type="date" id="arrival-date">
+                    <span class="error" id="arrival-date-error"></span>
+                </div>
+                <div>
+                    <label for="nights">Nights:</label>
+                    <input type="text" id="nights">
+                    <span class="error" id="nights-error"></span>
+                </div>
+                <div>
+                    <label for="adults">Adults:</label>
+                    <input type="number" id="adults" min="1">
+                </div>
+                <div>
+                    <label for="children">Children:</label>
+                    <input type="number" id="children" min="0">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Preferences</legend>
+                <div>
+                    <label>Room Type:</label>
+                    <input type="radio" id="standard" name="room-type" value="Standard">
+                    <label for="standard">Standard</label>
+                    <input type="radio" id="business" name="room-type" value="Business">
+                    <label for="business">Business</label>
+                    <input type="radio" id="suite" name="room-type" value="Suite">
+                    <label for="suite">Suite</label>
+                </div>
+                <div>
+                    <label>Bed Type:</label>
+                    <input type="radio" id="king" name="bed-type" value="King">
+                    <label for="king">King</label>
+                    <input type="radio" id="double-double" name="bed-type" value="Double Double">
+                    <label for="double-double">Double Double</label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Contact Information</legend>
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name">
+                    <span class="error" id="name-error"></span>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email">
+                    <span class="error" id="email-error"></span>
+                </div>
+                <div>
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone">
+                    <span class="error" id="phone-error"></span>
+                </div>
+            </fieldset>
+            <div class="button-container">
+                <button type="button" id="submit-button">Submit</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        &copy; 2024 YourName | Student ID: 123456
+    </footer>
+    <script>
+   
+    document.addEventListener("DOMContentLoaded", () => {
+        const validateForm = () => {
+            const arrivalDate = document.getElementById("arrival-date").value.trim();
+            const nights = document.getElementById("nights").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const name = document.getElementById("name").value.trim();
+
+            let hasError = false;
+
+            if (!arrivalDate) {
+                document.getElementById("arrival-date-error").textContent = "Required";
+                hasError = true;
+            } else {
+                document.getElementById("arrival-date-error").textContent = "";
+            }
+
+            if (!nights || isNaN(nights)) {
+                document.getElementById("nights-error").textContent = "Required";
+                hasError = true;
+            } else {
+                document.getElementById("nights-error").textContent = "";
+            }
+
+            if (!email.includes("@") || !email.includes(".")) {
+                document.getElementById("email-error").textContent = "Required";
+                hasError = true;
+            } else {
+                document.getElementById("email-error").textContent = "";
+            }
+
+            if (!name) {
+                document.getElementById("name-error").textContent = "Required";
+                hasError = true;
+            } else {
+                document.getElementById("name-error").textContent = "";
+            }
+
+            if (hasError) {
+                alert("Please fix the errors before submitting.");
+            } else {
+                alert("Reservation submitted successfully!");
+            }
+        };
+
+        document.getElementById("submit-button").addEventListener("click", validateForm);
+    });
+
+
+    </script>
+</body>
+</html>

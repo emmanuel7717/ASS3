@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Income Tax Calculator</h1>
+    </header>
+    <main>
+        <form id="tax-calculator-form">
+            <div class="form-group">
+                <label for="amount">Taxable Amount:</label>
+                <input type="text" id="amount" name="amount">
+                <span class="error" id="amount-error"></span>
+            </div>
+            <div class="button-container">
+                <button type="button" id="calculate">Calculate</button>
+            </div>
+            <div class="form-group">
+                <label for="tax-result">Tax Owed:</label>
+                <input type="text" id="tax-result" disabled>
+            </div>
+        </form>
+    </main>
+    <footer>
+        &copy; 2024 Emmanuel | Student ID: 123456
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const processEntry = () => {
+                const amountInput = document.getElementById("amount");
+                const amountError = document.getElementById("amount-error");
+                const amount = parseInt(amountInput.value.trim(), 10);
+
+                amountError.textContent = "";
+
+                if (isNaN(amount) || amount <= 0) {
+                    amountError.textContent = "Enter a valid number greater than 0.";
+                    amountInput.focus();
+                } else {
+                    const tax = calculateTax(amount);
+                    document.getElementById("tax-result").value = tax.toFixed(2);
+                }
+                
+                amountInput.focus();
+            };
+
+            const calculateTax = (amount) => {
+                let tax = 0;
+
+                if (amount <= 9875) {
+                    tax = amount * 0.10;
+                } else if (amount <= 40125) {
+                    tax = 987.50 + (amount - 9875) * 0.12;
+                } else if (amount <= 85525) {
+                    tax = 4617.50 + (amount - 40125) * 0.22;
+                } else if (amount <= 163300) {
+                    tax = 14605.50 + (amount - 85525) * 0.24;
+                } else if (amount <= 207350) {
+                    tax = 33271.50 + (amount - 163300) * 0.32;
+                } else if (amount <= 518400) {
+                    tax = 47367.50 + (amount - 207350) * 0.35;
+                } else {
+                    tax = 156235.00 + (amount - 518400) * 0.37;
+                }
+
+                return tax;
+            };
+
+            document.getElementById("calculate").addEventListener("click", processEntry);
+        });
+    </script>
+</body>
+</html>

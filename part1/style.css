@@ -1,0 +1,85 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    color: #333;
+    max-width: 500px;
+    margin: 2em auto;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: orange;
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 0.5em;
+}
+
+.subtext {
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 1.5em;
+}
+
+.form-group {
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+label {
+    flex: 1;
+    font-weight: bold;
+    margin-right: 0.5em;
+    text-align: right;
+}
+
+input[type="text"] {
+    flex: 2;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input:disabled {
+    background-color: #f0f0f0;
+}
+
+.error {
+    color: #e63946;
+    font-size: 0.8em;
+    visibility: hidden;
+    margin-left: 0.5em;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 1em;
+}
+
+button {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 0.5em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: orange;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.85em;
+    color: #555;
+    margin-top: 2em;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Change Calculator</h1>
+    </header>
+    <main>
+        <form id="change-calculator-form">
+            <div>
+                <label for="amount">Enter amount (0-99):</label>
+                <input type="text" id="amount" name="amount">
+                <span class="error" id="amount-error"></span>
+            </div>
+            <div class="button-container">
+                <button type="button" id="calculate">Calculate</button>
+            </div>
+            <div>
+                <label for="quarters-result">Quarters:</label>
+                <input type="text" id="quarters-result" disabled>
+            </div>
+            <div>
+                <label for="dimes-result">Dimes:</label>
+                <input type="text" id="dimes-result" disabled>
+            </div>
+            <div>
+                <label for="nickels-result">Nickels:</label>
+                <input type="text" id="nickels-result" disabled>
+            </div>
+            <div>
+                <label for="pennies-result">Pennies:</label>
+                <input type="text" id="pennies-result" disabled>
+            </div>
+        </form>
+    </main>
+    <footer>
+        &copy; Emmanuel | Student ID: 123456
+    </footer>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+       
+        const processEntry = () => {
+            const amountInput = document.getElementById("amount");
+            const amountError = document.getElementById("amount-error");
+            const amount = parseInt(amountInput.value.trim(), 10);
+    
+            
+            amountError.textContent = "";
+    
+            if (isNaN(amount) || amount < 0 || amount > 99) {
+                amountError.textContent = "Please enter a valid number between 0 and 99.";
+            } else {
+                makeChange(amount);
+            }
+        };
+    
+        
+        const makeChange = (amount) => {
+            const quarters = Math.floor(amount / 25);
+            amount %= 25;
+    
+            const dimes = Math.floor(amount / 10);
+            amount %= 10;
+    
+            const nickels = Math.floor(amount / 5);
+            const pennies = amount % 5;
+    
+            document.getElementById("quarters-result").value = quarters;
+            document.getElementById("dimes-result").value = dimes;
+            document.getElementById("nickels-result").value = nickels;
+            document.getElementById("pennies-result").value = pennies;
+        };
+    
+        
+        document.getElementById("calculate").addEventListener("click", processEntry);
+    });
+    </script>
+</body>
+</html>
